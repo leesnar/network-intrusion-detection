@@ -15,36 +15,36 @@ Machine-learning pipeline and analytics dashboard for detecting anomalous networ
 
 This project trains and compares classical ML models to flag malicious network connections in the NSL-KDD intrusion-detection benchmark, then layers an unsupervised anomaly detector on top to produce a continuous **0–100 risk score** for every record — the basis for a security-analytics dashboard aimed at a SOC-style "Executive Overview → Traffic Analysis → ML & Threat Analysis" workflow.
 
-| | |
-|---|---|
-| **Dataset** | NSL-KDD (Train: 25,192 rows · Test: 22,544 rows · 41 features) |
-| **Task** | Binary classification (`normal` vs `anomaly`) + unsupervised risk scoring |
-| **Best model** | Random Forest — **99.80%** accuracy, **99.81%** F1 |
-| **Risk engine** | Isolation Forest (`contamination=0.10`) → 0–100 risk score → 4-tier priority |
-| **Dashboard** | Looker Studio report + a static HTML/JS clone that needs no server or account |
+|                 |                                                                               |
+| --------------- | ----------------------------------------------------------------------------- |
+| **Dataset**     | NSL-KDD (Train: 25,192 rows · Test: 22,544 rows · 41 features)                |
+| **Task**        | Binary classification (`normal` vs `anomaly`) + unsupervised risk scoring     |
+| **Best model**  | Random Forest — **99.80%** accuracy, **99.81%** F1                            |
+| **Risk engine** | Isolation Forest (`contamination=0.10`) → 0–100 risk score → 4-tier priority  |
+| **Dashboard**   | Looker Studio report + a static HTML/JS clone that needs no server or account |
 
 ## Results
 
 **Model comparison** (held-out 20% validation split, `random_state=42`):
 
-| Model | Accuracy | Precision | Recall | F1 |
-|---|---:|---:|---:|---:|
+| Model                |   Accuracy |  Precision |     Recall |         F1 |
+| -------------------- | ---------: | ---------: | ---------: | ---------: |
 | **Random Forest** ⭐ | **99.80%** | **99.67%** | **99.96%** | **99.81%** |
-| Gradient Boosting | 99.56% | 99.52% | 99.67% | 99.59% |
-| K-Nearest Neighbors | 99.48% | 99.33% | 99.70% | 99.52% |
-| Decision Tree | 99.46% | 99.52% | 99.48% | 99.50% |
-| Logistic Regression | 95.61% | 94.94% | 96.95% | 95.94% |
+| Gradient Boosting    |     99.56% |     99.52% |     99.67% |     99.59% |
+| K-Nearest Neighbors  |     99.48% |     99.33% |     99.70% |     99.52% |
+| Decision Tree        |     99.46% |     99.52% |     99.48% |     99.50% |
+| Logistic Regression  |     95.61% |     94.94% |     96.95% |     95.94% |
 
 **Top predictive features** (Random Forest importance): `src_bytes` (0.176), `dst_bytes` (0.106), `flag` (0.098), `dst_host_same_srv_rate` (0.070), `same_srv_rate` (0.067) — byte volume and service-repetition patterns dominate, consistent with how DoS/probe attacks in NSL-KDD behave.
 
 **Risk & priority distribution** across all 25,192 records (Isolation Forest):
 
-| Priority | Records | Share |
-|---|---:|---:|
-| P4 – Low | 16,509 | 65.5% |
-| P3 – Medium | 6,295 | 25.0% |
-| P2 – High | 2,178 | 8.6% |
-| P1 – Critical | 210 | 0.8% |
+| Priority      | Records | Share |
+| ------------- | ------: | ----: |
+| P4 – Low      |  16,509 | 65.5% |
+| P3 – Medium   |   6,295 | 25.0% |
+| P2 – High     |   2,178 |  8.6% |
+| P1 – Critical |     210 |  0.8% |
 
 Mean risk score **23.14** / 100 → **Security Health Index 76.86**.
 
@@ -54,11 +54,11 @@ The live Looker Studio report is mirrored by a dependency-free clone in [`looker
 
 <table>
 <tr><td><b>Executive Overview</b></td></tr>
-<tr><td><img src="docs/screenshots/executive-overview.jpg" alt="Executive Overview page — KPI cards, priority distribution, threat category, top risk records" width="100%"></td></tr>
+<tr><td><img src="docs/screenshots/executive-overview.png" alt="Executive Overview page — KPI cards, priority distribution, threat category, top risk records" width="100%"></td></tr>
 <tr><td><b>Traffic Analysis</b></td></tr>
-<tr><td><img src="docs/screenshots/traffic-analysis.jpg" alt="Traffic Analysis page — protocol/flag distribution, protocol x priority pivot, top services" width="100%"></td></tr>
+<tr><td><img src="docs/screenshots/traffic-analysis.png" alt="Traffic Analysis page — protocol/flag distribution, protocol x priority pivot, top services" width="100%"></td></tr>
 <tr><td><b>ML &amp; Threat Analysis</b></td></tr>
-<tr><td><img src="docs/screenshots/ml-threat-analysis.jpg" alt="ML and Threat Analysis page — model comparison, feature importance, risk score distribution, feature x model pivot" width="100%"></td></tr>
+<tr><td><img src="docs/screenshots/ml-threat-analysis.png" alt="ML and Threat Analysis page — model comparison, feature importance, risk score distribution, feature x model pivot" width="100%"></td></tr>
 </table>
 
 ## Pipeline
