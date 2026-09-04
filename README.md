@@ -50,7 +50,7 @@ Mean risk score **23.14** / 100 → **Security Health Index 76.86**.
 
 ## Dashboard
 
-The live Looker Studio report is mirrored by a dependency-free clone in [`looker-clone/`](looker-clone/) — open `looker-clone/index.html` directly in a browser, no server or Google account required. All numbers below come from the actual trained pipeline, not mock data.
+The Looker Studio dashboard can be viewed at: https://datastudio.google.com/reporting/84f35273-54e0-43ab-8299-20e5a075e41f. The live Looker Studio report is mirrored by a dependency-free clone in [`looker-clone/`](looker-clone/) — open `looker-clone/index.html` directly in a browser, no server or Google account required. All numbers below come from the actual trained pipeline, not mock data.
 
 <table>
 <tr><td><b>Executive Overview</b></td></tr>
