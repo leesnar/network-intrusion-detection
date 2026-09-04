@@ -1,0 +1,16 @@
+Feature,Importance
+src_bytes,0.17581
+dst_bytes,0.106277
+flag,0.097893
+dst_host_same_srv_rate,0.070492
+same_srv_rate,0.0668
+dst_host_srv_count,0.060172
+diff_srv_rate,0.04407
+logged_in,0.042377
+count,0.037228
+protocol_type,0.037189
+dst_host_diff_srv_rate,0.033523
+service,0.026068
+dst_host_same_src_port_rate,0.024869
+dst_host_srv_diff_host_rate,0.021678
+srv_serror_rate,0.021251

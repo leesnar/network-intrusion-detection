@@ -1,0 +1,2 @@
+TotalTraffic,AnomalyCount,NormalCount,CriticalThreatCount,HighRiskCount,SecurityHealthIndex,AverageRiskScore,RF_Accuracy_pct,RF_Precision_pct,RF_Recall_pct,RF_F1_pct
+25192,2520,22672,210,2178,76.86,23.14,99.8,99.67,99.96,99.81
